@@ -85,7 +85,6 @@ public class AlbumController {
             Path directorioImg = Paths.get("src\\main\\resources\\static\\"+ruta);
             String rutaCompleta = directorioImg.toFile().getAbsolutePath();
             Files.delete(Paths.get(rutaCompleta));
-            System.out.println(Paths.get(rutaCompleta)+"-------------------------------------------------------- EXITOSO");
         } catch (IOException e){
             throw new RuntimeException(e);
         }
