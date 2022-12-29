@@ -16,7 +16,7 @@ public class AlbumControllerRest {
     @Autowired
     private AlbumService albumService;
 
-    @GetMapping(value="/album-json/{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value="/api/album/{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
     public AlbumDTO getAlbumJsonById(@PathVariable long id) throws Exception {
 
         Optional<Album> album = albumService.findById(id);
