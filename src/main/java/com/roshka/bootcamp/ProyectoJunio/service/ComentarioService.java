@@ -2,8 +2,6 @@ package com.roshka.bootcamp.ProyectoJunio.service;
 
 import com.roshka.bootcamp.ProyectoJunio.controller.dto.ComentarioDTO;
 import com.roshka.bootcamp.ProyectoJunio.model.Comentario;
-import com.roshka.bootcamp.ProyectoJunio.model.Foto;
-import com.roshka.bootcamp.ProyectoJunio.model.Usuario;
 import com.roshka.bootcamp.ProyectoJunio.controller.repository.ComentarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ComentarioService {
+public class ComentarioService implements ComentarioServiceInterace {
 
     @Autowired
     private ComentarioRepository comentarioRepository;
