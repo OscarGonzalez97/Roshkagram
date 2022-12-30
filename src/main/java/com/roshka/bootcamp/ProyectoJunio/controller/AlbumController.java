@@ -82,6 +82,7 @@ public class AlbumController {
         //borrar archivo del servidor
         try{
             String ruta = fotoService.findById(idFoto).get().getRuta();
+            //Cambiar ruta por la del servidor actual
             Path directorioImg = Paths.get("src\\main\\resources\\static\\"+ruta);
             String rutaCompleta = directorioImg.toFile().getAbsolutePath();
             Files.delete(Paths.get(rutaCompleta));
