@@ -15,21 +15,26 @@ public class FotoDTO {
     private Long idFoto;
     private String ruta;
     private String descripcion;
-    private List<usuarioComentario> usuariocomentarios;
+    private List<usuarioComentario> comentarios_usuarios;
 
     public FotoDTO(Foto foto){
         this.idFoto = foto.getId_foto();
         this.ruta = foto.getRuta();
         this.descripcion = foto.getDescripcion();
-        this.usuariocomentarios = new LinkedList<usuarioComentario>();
+        this.comentarios_usuarios = new LinkedList<>();
+        System.out.println("Linked list");
+        System.out.println(comentarios_usuarios);
         List<Comentario> comentario = foto.getListaComentarios();
         for (Comentario c: comentario) {
-            usuariocomentarios.add(new usuarioComentario(c.getComentarioUsuario().getId_usuario(), c.getComentarioUsuario().getNombre(), c.getComentarioUsuario().getApellido(),
+            comentarios_usuarios.add(new usuarioComentario(c.getComentarioUsuario().getId_usuario(), c.getComentarioUsuario().getNombre(), c.getComentarioUsuario().getApellido(),
                     c.getDescripcion(), c.getId_comentario()));
         }
     }
 }
 
+
+@Getter
+@Setter
 @Builder
 class usuarioComentario{
     private Long idUsuario;
