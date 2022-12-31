@@ -24,7 +24,9 @@ public class FotoDTO {
             comentarios_usuarios.add(new usuarioComentario(c.getComentarioUsuario().getId_usuario(), c.getComentarioUsuario().getNombre(), c.getComentarioUsuario().getApellido(),
                     c.getDescripcion(), c.getId_comentario()));
         }
-    }
+        if (this.comentarios_usuarios.isEmpty()) {
+            this.comentarios_usuarios = null;}
+        }
 }
 @Getter
 @Setter
