@@ -22,8 +22,6 @@ public class FotoDTO {
         this.ruta = foto.getRuta();
         this.descripcion = foto.getDescripcion();
         this.comentarios_usuarios = new LinkedList<>();
-        System.out.println("Linked list");
-        System.out.println(comentarios_usuarios);
         List<Comentario> comentario = foto.getListaComentarios();
         for (Comentario c: comentario) {
             comentarios_usuarios.add(new usuarioComentario(c.getComentarioUsuario().getId_usuario(), c.getComentarioUsuario().getNombre(), c.getComentarioUsuario().getApellido(),
