@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ComentarioService implements ComentarioServiceInterace {
+public class ComentarioService {
 
     @Autowired
     private ComentarioRepository comentarioRepository;
