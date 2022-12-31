@@ -78,7 +78,18 @@ public class AlbumController {
         return "formulario-fotos";
     }
     @PostMapping("foto-borrar")
-    public String eliminarFoto(@RequestParam("idFoto") long idFoto, @RequestParam("idAlbum") long album_id){
+    public String eliminarFoto(@RequestParam("idFoto") long idFoto, @RequestParam("idAlbum") long album_id){    //borrar archivo en el servidor
+        //borrar archivo del servidor
+        try{
+            String ruta = fotoService.findById(idFoto).get().getRuta();
+            //Cambiar ruta por la del servidor actual
+            Path directorioImg = Paths.get("src\\main\\resources\\static\\"+ruta);
+            String rutaCompleta = directorioImg.toFile().getAbsolutePath();
+            Files.delete(Paths.get(rutaCompleta));
+        } catch (IOException e){
+            throw new RuntimeException(e);
+        }
+        //borrar referencia a la base de datos
         fotoService.delete(idFoto);
         return "redirect:/album/" + album_id;
     }
