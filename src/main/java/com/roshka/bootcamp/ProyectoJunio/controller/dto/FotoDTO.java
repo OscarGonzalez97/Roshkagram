@@ -1,15 +1,12 @@
 package com.roshka.bootcamp.ProyectoJunio.controller.dto;
-
 import com.roshka.bootcamp.ProyectoJunio.model.Comentario;
 import com.roshka.bootcamp.ProyectoJunio.model.Foto;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.LinkedList;
 import java.util.List;
-
 @Data
 public class FotoDTO {
     private Long idFoto;
@@ -29,8 +26,6 @@ public class FotoDTO {
         }
     }
 }
-
-
 @Getter
 @Setter
 @Builder
