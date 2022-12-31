@@ -1,10 +1,10 @@
 package com.roshka.bootcamp.ProyectoJunio.controller.dto;
-
 import com.roshka.bootcamp.ProyectoJunio.model.Album;
-import com.roshka.bootcamp.ProyectoJunio.model.Comentario;
 import com.roshka.bootcamp.ProyectoJunio.model.Foto;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.*;
 
@@ -15,6 +15,7 @@ public class AlbumDTOAPI {
     private Date fechaCreacion;
     private String nombreUsuario;
     private String categoria;
+    private String ruta;
 
     public AlbumDTOAPI(Album album) {
         this.titulo = album.getTitulo();
@@ -22,8 +23,6 @@ public class AlbumDTOAPI {
         this.fechaCreacion = album.getFechaCreacion();
         this.nombreUsuario = album.getUsuario().getNombre() + " " + album.getUsuario().getApellido();
         this.categoria = album.getCategoria().getNombre();
-}
-@Builder
-class albumFoto{
-    private String ruta;
+        this.ruta = album.getFotos().stream().findAny().get().getRuta();
+    }
 }
