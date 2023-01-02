@@ -10,7 +10,7 @@ import java.util.Date;
 public class ComentarioDTO {
     private String descripcion;
     private Foto foto;
-    private UsuarioDTO usuario;
+    private Usuario usuario;
     private String idFoto;
     private String idComentario;
 }

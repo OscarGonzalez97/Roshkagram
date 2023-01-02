@@ -15,7 +15,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     public Usuario findByEmail(String email);
 
-    @Query(value = "SELECT new com.roshka.bootcamp.ProyectoJunio.controller.dto.UsuarioDTO(u.id_usuario , u.nombre, u.apellido) FROM Usuario u where u.id_usuario=:id")
-    List<UsuarioDTO> findAllUsuarioDTO(@Param("id") Long id);
+    @Query(value = "SELECT new com.roshka.bootcamp.ProyectoJunio.controller.dto.UsuarioDTO(u.nombre, u.apellido) FROM Usuario u where u.id_usuario=:id")
+    UsuarioDTO findAllUsuarioDTO(@Param("id") Long id);
 
 }

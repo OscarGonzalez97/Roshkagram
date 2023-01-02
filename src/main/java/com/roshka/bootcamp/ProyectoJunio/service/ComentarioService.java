@@ -16,7 +16,8 @@ import java.util.Optional;
 public class ComentarioService {
 
     @Autowired
-    private ComentarioRepository comentarioRepository;
+    public
+    ComentarioRepository comentarioRepository;
 
     public List<Comentario> list() {
         return comentarioRepository.findAll();
