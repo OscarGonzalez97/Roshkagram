@@ -32,6 +32,12 @@ public class UsuarioService implements UsuarioServiceInterface {
     @Autowired
     CorreoService correoService;
 
+    public void resetPassword(String newPass, String correo, String token) {
+        Usuario usuario = usuarioRepository.findByEmail(correo);
+        usuario.setPassword(newPass);
+        usuarioRepository.save(usuario);
+    }
+
     /*
     public UsuarioService(UsuarioRepository usuarioRepository) {
         super();

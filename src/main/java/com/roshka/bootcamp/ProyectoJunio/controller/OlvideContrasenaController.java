@@ -1,8 +1,10 @@
 package com.roshka.bootcamp.ProyectoJunio.controller;
 import com.roshka.bootcamp.ProyectoJunio.ValidarCorreo.CorreoService;
 import com.roshka.bootcamp.ProyectoJunio.model.Usuario;
+import com.roshka.bootcamp.ProyectoJunio.service.OlvideContrasenaService;
 import com.roshka.bootcamp.ProyectoJunio.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,29 +19,32 @@ public class OlvideContrasenaController {
     @Autowired
     private OlvideContrasenaService olvideContrasenaService;
     @Autowired
+
     @GetMapping
-    public String mostrarFomrularioDeRegistro() {
+    public String mostrarPasswordReset() {
         return "password_reset";
     }
-    @GetMapping ("/password_reset")
-    public String validarCorreo(@RequestParam(defaultValue = "") String token, @RequestParam(defaultValue = "") String correo) {
+
+    @GetMapping("/verified")
+    public String validarCorreo(@RequestParam (required = false, name = "token") String token,
+                                @RequestParam (required = false, name="correo") String correo) {
         Usuario usuario = usuarioService.existeUsuario(correo);
-        if (correo.equals("") || token.equals(""))
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (correo.equals("") || token.equals("")) {
             //Si el token o correo esta vacio
-            return "redirect:/password_reset?err001";
+            return "redirect:/password_reset?err777";
+        }
         //Si los token son distintos
         if (!token.equals(usuario.getReset_password_token())) {
-            System.out.println("hola");
-            return "redirect:/password_reset?err001";
+            return "redirect:/password_reset?err888";
         }
-        System.out.println("hola");
-        return "redirect:/password_reset/verified";
+            return "redirect:/password_reset_verified?token="+token+"?correo="+correo;
     }
-    @GetMapping("/password_reset/verified")
+    /*@RequestMapping("/password_reset/verified")
     public String changePassowrd(@RequestParam (required = false) String token, @RequestParam(defaultValue = "") String correo){
         Usuario usuario = usuarioService.existeUsuario(correo);
-        return token+ " " + correo;
-    };
+        return "password_reset/verified";
+    };*/
     @PostMapping
     public String passwordReset(@RequestParam(name="correo") String correo) {
         try {

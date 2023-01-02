@@ -1,5 +1,6 @@
-package com.roshka.bootcamp.ProyectoJunio.controller;
+package com.roshka.bootcamp.ProyectoJunio.service;
 import com.roshka.bootcamp.ProyectoJunio.ValidarCorreo.CorreoService;
+import com.roshka.bootcamp.ProyectoJunio.controller.repository.UsuarioRepository;
 import com.roshka.bootcamp.ProyectoJunio.model.Usuario;
 import com.roshka.bootcamp.ProyectoJunio.service.UsuarioService;
 import freemarker.template.Configuration;
@@ -22,12 +23,16 @@ public class OlvideContrasenaService {
     @Autowired
     private UsuarioService usuarioService;
     private static final String from = "roshkagram@roshka.com";
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public void sendEmail(Usuario usuario, String correo) {
         String tokenVerificacion = DigestUtils.sha256Hex(usuario.getEmail()
                 + new Date().toString()
                 + DigestUtils.md5Hex(UUID.randomUUID().toString()));
-        String text = "https://localhost:8080/password_reset/verified?token=" + tokenVerificacion +
+        usuario.setReset_password_token(tokenVerificacion);
+        usuarioRepository.save(usuario);
+        String text = "localhost:8080/password_reset/verified?token=" + tokenVerificacion +
                 "&correo=" + usuario.getEmail();
         String text2 = "\"" + text + "\""; // para los href
         String name = usuario.getNombre() + " " + usuario.getApellido();
