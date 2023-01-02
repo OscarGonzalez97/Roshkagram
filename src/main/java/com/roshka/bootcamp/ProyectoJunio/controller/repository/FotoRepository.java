@@ -1,6 +1,6 @@
 package com.roshka.bootcamp.ProyectoJunio.controller.repository;
 
-import com.roshka.bootcamp.ProyectoJunio.controller.dto.FotoDTO;
+import com.roshka.bootcamp.ProyectoJunio.controller.dto.FotoDTOAPI;
 import com.roshka.bootcamp.ProyectoJunio.model.Album;
 import com.roshka.bootcamp.ProyectoJunio.model.Foto;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,7 +14,8 @@ import java.util.List;
 public interface FotoRepository extends JpaRepository<Foto, Long> {
     List<Foto> findAllByAlbum(Album album);
 
-    @Query(value = "SELECT new com.roshka.bootcamp.ProyectoJunio.controller.dto.FotoDTO(f.id_foto , f.ruta , f.descripcion) FROM Foto f where f.id_foto=:id")
-    FotoDTO findByIdFotoDTO(@Param("id") Long id);
+    public static final String query = "SELECT f.id_foto AS id_foto , f.ruta AS ruta, f.descripcion AS descripcion FROM foto f where f.id_foto = :id";
+    @Query(value =  query , nativeQuery = true)
+    FotoDTOAPI findByIdFotoDTOAPI(@Param("id") Long id);
 
 }
