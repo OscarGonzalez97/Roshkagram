@@ -55,7 +55,6 @@ public class ValidarCorreoController {
                 System.out.println("\nHa ocurrido un error inesperado al activar el usuario");
                 return "redirect:/login?err001";
             }
-
             return "redirect:/login?validado";
         } catch (Exception e) {
             return "redirect:/login?err001";

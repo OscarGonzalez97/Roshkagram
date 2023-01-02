@@ -20,11 +20,12 @@
             </div>
 
             <div style="font-size: 1rem; padding: 1rem; line-height: 1.4rem; color: black;">
-                <br>Dale click en el botón para restablecer tu contraseña.</b>
+                <b>Has solicitado cambiar tu contraseña.
+                <br>Dale click en el botón para cambiarla</b>
             </div>
 
             <div style="padding: 1rem;">
-              <a href=${text2}><button class="btn" style="font-size: 1.3rem; background-color: white; border: none; border-radius: 5px;">Activar Cuenta</button></a>
+              <a href=${text2}><button class="btn" style="font-size: 1.3rem; background-color: white; border: none; border-radius: 5px;">Cambiar contraseña</button></a>
             </div>
 
             <div style="padding: 1rem; text-decoration: none; color: black;">
