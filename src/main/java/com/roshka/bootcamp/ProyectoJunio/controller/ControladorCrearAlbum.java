@@ -74,7 +74,7 @@ public class ControladorCrearAlbum {
         model.addAttribute("idAlbum", id);
         if (albumActual.isPresent()) {
             if(!file.isEmpty()){
-                Path directorioImagenes= Paths.get("src\\main\\resources\\static\\img"+ DigestUtils.md5Hex(file.getOriginalFilename()));
+                Path directorioImagenes= Paths.get("images/"+ DigestUtils.md5Hex(file.getOriginalFilename()));
                 String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
                 try {
                     byte[] bytesImg=file.getBytes();

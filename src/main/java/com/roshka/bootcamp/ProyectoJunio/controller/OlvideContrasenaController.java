@@ -40,11 +40,7 @@ public class OlvideContrasenaController {
         }
         return "redirect:/password_reset_verified?token="+token+"&correo="+correo;
     }
-    /*@RequestMapping("/password_reset/verified")
-    public String changePassowrd(@RequestParam (required = false) String token, @RequestParam(defaultValue = "") String correo){
-        Usuario usuario = usuarioService.existeUsuario(correo);
-        return "password_reset/verified";
-    };*/
+    
     @PostMapping
     public String passwordReset(@RequestParam(name="correo") String correo) {
         try {
