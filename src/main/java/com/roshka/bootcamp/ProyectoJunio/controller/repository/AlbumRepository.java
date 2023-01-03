@@ -19,7 +19,7 @@ public interface AlbumRepository extends PagingAndSortingRepository<Album, Long>
     Page<Album> findByCategoria(Optional<Categoria> categoria, Pageable pageable);
 
     static final String query="SELECT a.id_album AS id_album, a.descripcion AS descripcion, a.titulo AS titulo," +
-            " a.usuario_id AS usuario_id, u.nombre AS nombre, u.apellido AS apellido FROM album a INNER JOIN usuario u ON a.usuario_id = u.id_usuario";
+            " a.usuario_id AS usuario_id, u.nombre AS nombre, u.apellido AS apellido FROM album a INNER JOIN usuario u ON a.usuario_id = u.id_usuario WHERE id_album = :id";
     @Query(value = query,nativeQuery = true)
     AlbumDTOAPI findAlbumDTOAPI(@Param("id") Long id);
 }
