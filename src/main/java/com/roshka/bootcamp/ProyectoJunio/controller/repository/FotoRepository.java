@@ -18,4 +18,8 @@ public interface FotoRepository extends JpaRepository<Foto, Long> {
     @Query(value =  query , nativeQuery = true)
     FotoDTOAPI findByIdFotoDTOAPI(@Param("id") Long id);
 
+    static final String query2 = "SELECT f.id_foto AS id_foto , f.ruta AS ruta, f.descripcion AS descripcion FROM foto f INNER JOIN album a " +
+            "ON f.album_id = a.id_album where a.id_album = :id";
+    @Query(value =  query , nativeQuery = true)
+    List<FotoDTOAPI> findAllFotoDTOAPI(@Param("id") Long id);
 }
