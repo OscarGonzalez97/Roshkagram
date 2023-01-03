@@ -1,4 +1,4 @@
-package com.roshka.bootcamp.ProyectoJunio;
+package com.roshka.bootcamp.ProyectoJunio.controller;
 
 import com.roshka.bootcamp.ProyectoJunio.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,19 +16,20 @@ public class resetPasswordController {
         this.usuarioService = usuarioService;
     }
 
-    @GetMapping()
-    public String passwordResetVerified(@RequestParam(required = false, name = "token") String token,
-                                        @RequestParam (required = false, name="correo") String correo){
-        if (token != null )
+    @GetMapping
+    public String passwordResetVerified(@RequestParam(required = true, name = "token") String token,
+                                        @RequestParam (required = true, name="correo") String correo){
+        if (usuarioService.getTokenByEmail(correo).equals(token))
             return "password_reset_verified";
-        return "/login";
+        return "redirect:/login?err003";
     }
 
-    @PutMapping
-    public void updatePassword(@RequestParam String newPass,
+    @PostMapping
+    public String updatePassword(@RequestParam String newPass,
                                @RequestParam String correo,
                                @RequestParam String token){
         usuarioService.resetPassword(newPass, correo, token);
+        return "redirect:/login?reset";
     }
 
 

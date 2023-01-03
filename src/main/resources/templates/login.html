@@ -75,6 +75,26 @@
 						</div>
 					</div>
 				</div>
+				
+				<!-- Permisos denegados -->
+				<div th:if=${param.err003}>
+					<div class="alert alert-danger d-flex align-items-center" role="alert">
+						<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+						<div>
+							Permisos denegados
+						</div>
+					</div>
+				</div>
+
+				<!-- Contraseña actualizada -->
+				<div th:if=${param.reset}>
+					<div class="alert alert-primary d-flex align-items-center" role="alert">
+						<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+						<div>
+							Contraseña cambiada con éxito
+						</div>
+					</div>
+				</div>
 
            		<div class="input-div one">
            		   <div class="i">

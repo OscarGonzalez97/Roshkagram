@@ -38,7 +38,7 @@ public class OlvideContrasenaController {
         if (!token.equals(usuario.getReset_password_token())) {
             return "redirect:/password_reset?err888";
         }
-            return "redirect:/password_reset_verified?token="+token+"?correo="+correo;
+        return "redirect:/password_reset_verified?token="+token+"&correo="+correo;
     }
     /*@RequestMapping("/password_reset/verified")
     public String changePassowrd(@RequestParam (required = false) String token, @RequestParam(defaultValue = "") String correo){

@@ -32,7 +32,7 @@ public class OlvideContrasenaService {
                 + DigestUtils.md5Hex(UUID.randomUUID().toString()));
         usuario.setReset_password_token(tokenVerificacion);
         usuarioRepository.save(usuario);
-        String text = "localhost:8080/password_reset/verified?token=" + tokenVerificacion +
+        String text = "localhost:8080/password_reset_verified?token=" + tokenVerificacion +
                 "&correo=" + usuario.getEmail();
         String text2 = "\"" + text + "\""; // para los href
         String name = usuario.getNombre() + " " + usuario.getApellido();

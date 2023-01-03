@@ -32,10 +32,24 @@ public class UsuarioService implements UsuarioServiceInterface {
     @Autowired
     CorreoService correoService;
 
+    public String getTokenByEmail(String email) {
+        Usuario usuario = usuarioRepository.findByEmail(email);
+        if (usuario != null){
+            return usuario.getReset_password_token();
+        }else {
+            return null;
+        }
+    }
+
     public void resetPassword(String newPass, String correo, String token) {
         Usuario usuario = usuarioRepository.findByEmail(correo);
-        usuario.setPassword(newPass);
-        usuarioRepository.save(usuario);
+        if (usuario != null && usuario.getReset_password_token().equals(token)){
+            usuario.setPassword(passwordEncoder.encode(newPass));
+            usuario.setReset_password_token(null);
+            usuarioRepository.save(usuario);
+        }else {
+            throw new IllegalStateException("Token error");
+        }
     }
 
     /*
