@@ -32,6 +32,26 @@ public class UsuarioService implements UsuarioServiceInterface {
     @Autowired
     CorreoService correoService;
 
+    public String getTokenByEmail(String email) {
+        Usuario usuario = usuarioRepository.findByEmail(email);
+        if (usuario != null){
+            return usuario.getReset_password_token();
+        }else {
+            return null;
+        }
+    }
+
+    public void resetPassword(String newPass, String correo, String token) {
+        Usuario usuario = usuarioRepository.findByEmail(correo);
+        if (usuario != null && usuario.getReset_password_token().equals(token)){
+            usuario.setPassword(passwordEncoder.encode(newPass));
+            usuario.setReset_password_token(null);
+            usuarioRepository.save(usuario);
+        }else {
+            throw new IllegalStateException("Token error");
+        }
+    }
+
     /*
     public UsuarioService(UsuarioRepository usuarioRepository) {
         super();
@@ -55,7 +75,7 @@ public class UsuarioService implements UsuarioServiceInterface {
 
         /* enviar mensaje al correo registrado en el formulario para activar la cuenta */
         // generacio de link de activacion
-        String text = "https://roshkagram.roshka.com/verificacion?token=" + tokenVerificacion +
+        String text = "roshkagram.roshka.com/verificacion?token=" + tokenVerificacion +
                 "&correo=" + registroDTO.getEmail();
         String text2 = "\"" + text + "\""; // para los href
         // parametros para el correo
@@ -109,7 +129,6 @@ public class UsuarioService implements UsuarioServiceInterface {
 
         return new User(usuario.getEmail(), usuario.getPassword(), mapearAutoridadesRoles(usuario.getRoles()));
     }
-
     @Override
     public List<Usuario> listarUsuarios() {
         /* retorna una lista con todos los usuarios */
@@ -137,5 +156,4 @@ public class UsuarioService implements UsuarioServiceInterface {
         return permisos;
 
     }
-
 }

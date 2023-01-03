@@ -34,16 +34,19 @@ public class Usuario {
     @Column(name = "token_verificacion")
     private String tokenVerificacion;
 
+    @Column(name = "reset_password_token")
+    private String reset_password_token;
     public Usuario() {
 
     }
 
-    public Usuario(String nombre, String apellido, String email, String password) {
+    public Usuario(String nombre, String apellido, String email, String password, String reset_password_token) {
         super();
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.password = password;
+        this.reset_password_token = reset_password_token;
     }
 
     public Usuario(String nombre, String apellido, String email, String password, String estado, String tokenVerificacion) {
