@@ -1,12 +1,9 @@
 package com.roshka.bootcamp.ProyectoJunio.controller.dto;
+import com.roshka.bootcamp.ProyectoJunio.controller.repository.FotoRepository;
 import com.roshka.bootcamp.ProyectoJunio.model.Album;
 import com.roshka.bootcamp.ProyectoJunio.model.Foto;
-import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
-import java.time.LocalDate;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.*;
 
 @Data
@@ -17,6 +14,7 @@ public class AlbumDTOAPI {
     private String nombreUsuario;
     private String categoria;
     private String ruta;
+    private List<Foto> Fotos;
 
     public AlbumDTOAPI(Album album) {
         this.titulo = album.getTitulo();
@@ -28,8 +26,8 @@ public class AlbumDTOAPI {
             this.ruta = album.getFotos().stream().findAny().get().getRuta();
         else
             this.ruta = null;
+        this.Fotos = List.of();
     }
-
     public String getDate(Album album){
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(album.getFechaCreacion());
@@ -38,4 +36,6 @@ public class AlbumDTOAPI {
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         return day+"-"+month+"-"+year;
     }
+    @Autowired
+    FotoRepository fotorepository;
 }
