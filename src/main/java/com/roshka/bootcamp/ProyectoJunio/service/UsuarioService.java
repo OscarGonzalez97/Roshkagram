@@ -75,7 +75,7 @@ public class UsuarioService implements UsuarioServiceInterface {
 
         /* enviar mensaje al correo registrado en el formulario para activar la cuenta */
         // generacio de link de activacion
-        String text = "localhost:8080/verificacion?token=" + tokenVerificacion +
+        String text = "roshkagram.roshka.com/verificacion?token=" + tokenVerificacion +
                 "&correo=" + registroDTO.getEmail();
         String text2 = "\"" + text + "\""; // para los href
         // parametros para el correo
