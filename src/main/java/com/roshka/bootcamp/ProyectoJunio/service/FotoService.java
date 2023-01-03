@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class FotoService implements FotoServicioInterface{
     @Autowired
-    private FotoRepository fotoRepository;
+    public FotoRepository fotoRepository;
 
     public List<Foto> getFotos(Long idAlbum) {
         Album album = new Album();
