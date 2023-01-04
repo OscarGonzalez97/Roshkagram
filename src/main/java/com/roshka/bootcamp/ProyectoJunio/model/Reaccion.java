@@ -1,16 +1,12 @@
 package com.roshka.bootcamp.ProyectoJunio.model;
 
 import lombok.Data;
-import lombok.Generated;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Getter
-@Setter
+@Data
 @Entity
 public class Reaccion {
     @Id
@@ -21,10 +17,10 @@ public class Reaccion {
 
     /* Una foto tiene varias reaciones y una reacion puede estar en varias fotos */
     @OneToMany(mappedBy = "reaccion")
-    private Set<ReaccionFoto> fotos = new HashSet<>();
+    private Set<ReaccionFoto> fotos;
 
     /* Un comentario tiene varias reaciones y una reacion puede estar en varios comentarios */
     @OneToMany(mappedBy = "reaccion")
-    private Set<ReaccionComentario> comentarios = new HashSet<>();
+    private Set<ReaccionComentario> comentarios;
 
 }

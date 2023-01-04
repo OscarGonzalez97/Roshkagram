@@ -230,7 +230,7 @@
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="#" th:action="@{/foto-comentario}" method="post" class="">
+            <form th:action="@{/foto-comentario/}+${foto.id_foto}+@{?pageAnt=}+${pageAnt}" th:object="${crearReaccion}" method="post" class="">
                 <div class="modal-header">
                     <h1 class="modal-title" id="staticBackdropLabel"><strong id="prueba34">Agregar un emoji</strong>
                     </h1>
@@ -241,13 +241,13 @@
                     <div class="row shadow-lg p-1 rounded" id="contededorAlbum">
                         <div class="col-12" id="album_contenido">
                             <div class="mb-3">
-                                <label for="reaccion" class="form-label">
+                                <label for="icono" class="form-label">
                                     <h4>
                                         Emoji-reaccion:↴↴
                                     </h4>
                                 </label>
                                 <div class="col-llx-7 col-sm-12 col-md-12">
-                                    <input type="text" class="form-control h3" id="reaccion" name="titulo"
+                                    <input type="text" class="form-control h3" id="icono" name="icono"
                                            required maxlength="2"/>
                                 </div>
                             </div>
