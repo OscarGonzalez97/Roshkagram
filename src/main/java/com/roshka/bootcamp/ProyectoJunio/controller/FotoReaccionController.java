@@ -54,7 +54,11 @@ public class FotoReaccionController {
         reaccionFoto.setUsuario(usuario);
 
         try {
-            reaccionFotoService.guardar(reaccionFoto);
+            if(reaccion.isPresent()) {
+                reaccionFotoService.guardar(reaccionFoto);  //guarda la reaccion en la foto
+            }else
+                reaccionFotoService.delete(reaccionFoto);
+
 
             /* -- ENVIO DE LOS EMOJIS A LOS COMENTARIOS -- */
             model.addAttribute("reaccionesFoto", reaccionFotoService.obtenerReaccionesFoto(Long.parseLong(reaccionDTO.getFoto())));

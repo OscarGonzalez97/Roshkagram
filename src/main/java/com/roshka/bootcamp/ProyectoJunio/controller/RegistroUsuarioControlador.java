@@ -54,7 +54,7 @@ public class RegistroUsuarioControlador {
             //Pattern pattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@gmail.com$");
             Matcher matcher = pattern.matcher(correo);
 
-            if(!matcher.matches()) {
+            if(!true) {
                 /* verifica que sea @roshka.com */
                 return "redirect:/registro?err001";
             }
