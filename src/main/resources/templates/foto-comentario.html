@@ -230,7 +230,7 @@
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form th:action="@{/foto-comentario/}+${foto.id_foto}+@{?pageAnt=}+${pageAnt}" th:object="${crearReaccion}" method="post" class="">
+            <form th:action="@{/foto-comentario/}+${foto.id_foto}" th:object="${crearReaccion}" method="post" class="">
                 <div class="modal-header">
                     <h1 class="modal-title" id="staticBackdropLabel"><strong id="prueba34">Agregar un emoji</strong>
                     </h1>
@@ -257,7 +257,7 @@
                 </div>
                 <div class="modal-footer">
                     <div id="botones">
-                        <button type="submit" class="btn btn-primary">Guardar reaccion</button>
+                        <button type="submit" class="btn btn-primary ">Guardar reaccion</button>
                         <button type="button" onclick="restaurarValores()" class="btn btn-secondary"
                                 data-dismiss="modal">Cerrar
                         </button>
@@ -267,5 +267,11 @@
         </div>
     </div>
 </div>
+<script>
+        function restaurarValores(){
+         document.getElementById("icono").value ="";
+         document.querySelector('#select [value="' + selectedValue + '"]').selected = true;
+        }
+</script>
 </body>
 </html>

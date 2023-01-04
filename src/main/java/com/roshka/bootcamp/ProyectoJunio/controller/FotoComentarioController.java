@@ -162,7 +162,7 @@ public class FotoComentarioController {
         } catch (Exception e) {
             System.out.println("error");
         }
-        return "foto-comentario";
+        return "redirect:/foto-comentario/"+id;
     }
 //    public String AgregarReaccion(@ModelAttribute("reaccion") ReaccionDTO reaccionDTO){
 //        Reaccion reaccion = new Reaccion();
