@@ -124,6 +124,7 @@ public class FotoComentarioController {
 
     @PostMapping("foto-comentario/{id}")
     public String agregarReaccion(@ModelAttribute("crearReaccion") CrearReaccionDTO crearReaccionDTO, @RequestParam(name = "pageNo", required = false, defaultValue = "0") int pageNo, @PathVariable long id, Model model) throws Exception {
+        //para redireccionar en la pagina correcta
         Optional<Foto> foto = fotoService.findById(id);
         Optional<Album> album = albumService.findById(foto.get().getAlbum().getId_album());
         List<Foto> fotos = fotoService.getFotos(foto.get().getAlbum().getId_album());
@@ -164,27 +165,5 @@ public class FotoComentarioController {
         }
         return "redirect:/foto-comentario/"+id;
     }
-//    public String AgregarReaccion(@ModelAttribute("reaccion") ReaccionDTO reaccionDTO){
-//        Reaccion reaccion = new Reaccion();
-//        Foto foto = new Foto();
-//        foto.setId_foto(Long.parseLong(reaccionDTO.getPageAnt()));
-//        reaccion.setIcono(reaccionDTO.getReaccion());
-//        System.out.println(reaccion.getIcono());
-//         //.setId_foto(Long.parseLong(comentarioDTO.getIdFoto()));
-//        reaccion.setNombre(reaccionDTO.getReaccion());
-//        try {
-//            /* comentario. id_foto y id_usuario */
-//          //comentarioDTO.setIdUsuario(usuario.getId_usuario().toString());
-//                reaccion.setNombre(reaccionDTO.getReaccion());
-//
-//            if ((reaccion.getNombre())!=null){
-//                reaccionService.guardarReaccionDTO(reaccion);
-//
-//            }
-//
-//        } catch (Exception e) {
-//            System.out.println("error");
-//        }
-//        return "redirect:/foto-comentario/" + reaccionDTO.getPageAnt();
-//    }
+
 }
