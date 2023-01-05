@@ -29,7 +29,11 @@ public class ReaccionFotoService {
         return reaccionFotoRepository.save(reaccionFoto);
     }
 
-    public List<FotoReaccionAux> obtenerReaccionesFoto(long idFoto) {
+    public void delete(ReaccionFoto reaccionFoto) {
+        reaccionFotoRepository.deleteById(reaccionFoto.getId_reaccion_foto());
+    }
+
+    public List<FotoReaccionAux> obtenerReaccionesFoto(long idFoto) {   //solo lista los emojis de la foto
         /* filtrar todos las reacciones que permitezca a la foto */
 
         List<ReaccionFoto> reaccionesFoto = reaccionFotoRepository.findAll();

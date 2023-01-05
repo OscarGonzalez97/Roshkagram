@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CrearReaccion</title>
+<!--	CDNS-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<!-- Font Awesome -->
+	<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<!-- Google Fonts -->
+	<link
+		href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+<!-- MDB -->
+	<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.3.0/mdb.min.css" rel="stylesheet"/>
+<!--	Calendario-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<!--	FIN DE CDNS-->
+<!--	CSS's-->
+	<link th:href="@{/css/formulario_fotos.css}" rel = "stylesheet">
+	<link th:href="@{/css/estilos_select.css}" rel = "stylesheet">
+<!--	fin de CSS's-->
+</head>
+<body>
+<!--            boton para mostrar el form de album-->
+	<div id="contenedorBoton">
+		<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+			<i class="fas fa-plus fa-lg"></i>Agg 😀
+		</button>
+	</div>
+<!--            fin de boton-->
+<!-- Modal -->
+	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+<!--				redirije a esa pag-->
+				<form action="#" th:action="@{/crearAlbum/}" method="post" class="">
+					<div class="modal-header">
+						<h1 class="modal-title" id="staticBackdropLabel"><strong id="prueba34">Agregar reaccion</strong></h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="restaurarValores()"></button>
+					</div>
+					<div class="modal-body">
+						<div class="row shadow-lg p-1 rounded" id="contededorAlbum">
+							<div class="col-12" id="album_contenido">
+								<div class="mb-3">
+									<label for="Reaccion" class="form-label">
+										<h4>
+											Reaccion:
+										</h4>
+									</label>
+									<div class="col-llx-7 col-sm-12 col-md-12">
+										<input type="text" class="form-control h3" id="Reaccion" name="titulo" required/>
+									</div>
+								</div>
+
+
+								</div>
+								<input type="hidden" name="idCategoria" id="inputSelect"  value="">
+
+							</div>
+					</div>
+					<div class="modal-footer">
+						<div id="botones">
+							<button type="submit" class="btn btn-primary">Agregar reaccion</button>
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="restaurarValores()">Cerrar</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+<!--    fin Modal-->
+<!--	scripts -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<!-- MDB -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.3.0/mdb.min.js"></script>
+<!--	calendario-->
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<!--	scrip para el formulario de registro de albumes-->
+	<script>
+        function restaurarValores(){
+            document.getElementById("Reaccion").value ="";
+        }
+	</script>
+<!--	script select-->
+	<script type="text/javascript" src="js/select.js"></script>
+
+<!--fin de scripts-->
+</body>
+</html>

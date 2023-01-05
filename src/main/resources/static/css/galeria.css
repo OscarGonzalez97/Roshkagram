@@ -79,12 +79,27 @@ position: sticky;
 top: 15%;
 left : 5%;
 background-color: #1d75bc !important;
-
 }
 
+
 .btn-primary:hover {
-  ransition : 0.3s;
+  transition: 0.3s;
     box-shadow : 0px 0px 1px 8px #aaaaaa;
+    background-color : #828282;
+    cursor : pointer;
+}
+
+.btn2-primary{
+display: flex;
+align-items: center;
+position: sticky;
+top: 15%;
+left : -5%;
+background-color: #1d75bc !important;
+}
+.btn2-primary:hover {
+  transition : 0.3s;
+    box-shadow : 0px 0px 1px 8px #75bc1d;
     background-color : #828282;
     cursor : pointer;
 }

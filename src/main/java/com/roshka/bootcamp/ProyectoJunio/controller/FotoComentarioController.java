@@ -1,9 +1,6 @@
 package com.roshka.bootcamp.ProyectoJunio.controller;
 
-import com.roshka.bootcamp.ProyectoJunio.controller.dto.ComentarioDTO;
-import com.roshka.bootcamp.ProyectoJunio.controller.dto.FotoReaccionAux;
-import com.roshka.bootcamp.ProyectoJunio.controller.dto.ReaccionDTO;
-import com.roshka.bootcamp.ProyectoJunio.controller.dto.UsuarioRegistroDTO;
+import com.roshka.bootcamp.ProyectoJunio.controller.dto.*;
 import com.roshka.bootcamp.ProyectoJunio.model.*;
 import com.roshka.bootcamp.ProyectoJunio.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -124,4 +121,49 @@ public class FotoComentarioController {
 
         return "redirect:/foto-comentario/" + comentarioDTO.getIdFoto();
     }
+
+    @PostMapping("foto-comentario/{id}")
+    public String agregarReaccion(@ModelAttribute("crearReaccion") CrearReaccionDTO crearReaccionDTO, @RequestParam(name = "pageNo", required = false, defaultValue = "0") int pageNo, @PathVariable long id, Model model) throws Exception {
+        //para redireccionar en la pagina correcta
+        Optional<Foto> foto = fotoService.findById(id);
+        Optional<Album> album = albumService.findById(foto.get().getAlbum().getId_album());
+        List<Foto> fotos = fotoService.getFotos(foto.get().getAlbum().getId_album());
+        Long next = null;
+        Long prev = null;
+        for (int i = 0; i < fotos.size(); i++) {
+            if (id == fotos.get(i).getId_foto()) {
+                if (i < fotos.size() - 1) {
+                    next = fotos.get(i + 1).getId_foto();
+                }
+                if (i != 0) {
+                    prev = fotos.get(i - 1).getId_foto();
+                }
+            }
+        }
+        if (foto.isPresent()) {
+            System.out.println(album);
+            model.addAttribute("foto", foto.get());
+            model.addAttribute("nroAlbum", foto.get().getAlbum().getId_album());
+            model.addAttribute("pageAnt", pageNo);
+            model.addAttribute("comentarios", foto.get().getListaComentarios());
+            model.addAttribute("id_Foto", id);
+            model.addAttribute("titulo", foto.get().getAlbum().getTitulo());
+            model.addAttribute("next", next);
+            model.addAttribute("prev", prev);
+            model.addAttribute("reacciones", reaccionService.list());
+            /* -- ENVIO DE LOS EMOJIS A LOS COMENTARIOS -- */
+            model.addAttribute("reaccionesFoto", reaccionFotoService.obtenerReaccionesFoto(id));
+
+        }
+        //crear reaccion nueva
+        try {
+            if (!(crearReaccionDTO.getIcono().isEmpty())){
+                reaccionService.guardarReaccionDTO(crearReaccionDTO);
+            }
+        } catch (Exception e) {
+            System.out.println("error");
+        }
+        return "redirect:/foto-comentario/"+id;
+    }
+
 }
