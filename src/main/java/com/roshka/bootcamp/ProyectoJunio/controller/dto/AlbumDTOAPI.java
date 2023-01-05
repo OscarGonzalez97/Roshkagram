@@ -27,7 +27,10 @@ public class AlbumDTOAPI {
             this.ruta = album.getFotos().stream().findAny().get().getRuta();
         else
             this.ruta = null;
-        this.Fotos = album.getFotos().stream().map(Foto::getRuta).collect(Collectors.toList());
+        if (album.getFotos().stream().map(Foto::getRuta).findAny().isPresent())
+            this.Fotos = album.getFotos().stream().map(Foto::getRuta).collect(Collectors.toList());
+        else
+            this.Fotos = null;
     }
     public String getDate(Album album){
         Calendar calendar = Calendar.getInstance();
@@ -37,6 +40,4 @@ public class AlbumDTOAPI {
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         return day+"-"+month+"-"+year;
     }
-    @Autowired
-    FotoRepository fotorepository;
 }
