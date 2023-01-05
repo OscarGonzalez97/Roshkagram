@@ -5,6 +5,7 @@ import com.roshka.bootcamp.ProyectoJunio.model.Foto;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Data
 public class AlbumDTOAPI {
@@ -14,7 +15,7 @@ public class AlbumDTOAPI {
     private String nombreUsuario;
     private String categoria;
     private String ruta;
-    private List<Foto> Fotos;
+    private List<String> Fotos;
 
     public AlbumDTOAPI(Album album) {
         this.titulo = album.getTitulo();
@@ -26,7 +27,7 @@ public class AlbumDTOAPI {
             this.ruta = album.getFotos().stream().findAny().get().getRuta();
         else
             this.ruta = null;
-        this.Fotos = List.of();
+        this.Fotos = album.getFotos().stream().map(Foto::getRuta).collect(Collectors.toList());
     }
     public String getDate(Album album){
         Calendar calendar = Calendar.getInstance();
